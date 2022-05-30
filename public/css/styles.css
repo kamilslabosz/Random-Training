@@ -1,0 +1,94 @@
+/* ----------------GENERAL---------------------- */
+h1, .indie {
+  font-family: 'Indie Flower', cursive;
+  color: white;
+}
+
+p, h3, h4, h5 .oswald {
+  font-family: 'Oswald', sans-serif;
+  color: white;
+}
+
+body, .carousel-inner {
+  background-color: #F24C4C;
+}
+
+a {
+  color: #CE9461;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #E0D8B0;
+}
+
+#main-body {
+  background-color: #293462;
+  border-radius: 6px;
+  color: black;
+  height: 100%;
+  margin: 12px 0;
+}
+
+.container-fluid {
+  background-color: #293462;
+  border-radius: 3px;
+}
+
+/* ----------------FOOTER---------------------- */
+.footer {
+  background-color: #F7D716;
+  width: 100%;
+}
+
+.footer-font {
+  margin-bottom: 0;
+  color: black;
+}
+
+.footer-icon {
+  font-size: 2rem;
+  margin-top: 10px;
+}
+
+.footer-link {
+  color: black;
+  text-decoration: none;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.footer-link:hover {
+  color: #293462;
+}
+
+.skills-btn {
+  background-color: #DEA057;
+  width: 100%;
+  border-radius: 0;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.btn-row {
+  padding: 0 12px;
+  margin-bottom: 5px;
+}
+
+.skills-box {
+  border-radius: 6px;
+  background-color: #E0D8B0;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+}
+
+.heading {
+  font-size: 20px;
+}
+
+.carousel-inner {
+  padding-top: 6px;
+  margin-bottom: 12px;
+  border-radius: 6px;
