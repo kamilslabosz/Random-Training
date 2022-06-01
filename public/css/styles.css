@@ -1,16 +1,19 @@
+/* https://colorhunt.co/palette/293462f24c4cec9b3bf7d716 */
+
 /* ----------------GENERAL---------------------- */
 h1, .indie {
   font-family: 'Indie Flower', cursive;
   color: white;
 }
 
-p, h3, h4, h5 .oswald {
+p, h3, h4, h5, label, .oswald {
   font-family: 'Oswald', sans-serif;
   color: white;
 }
 
 body, .carousel-inner {
   background-color: #F24C4C;
+  background-image: url("../img/black-thread.png");
 }
 
 a {
@@ -32,7 +35,7 @@ a:hover {
 
 .container-fluid {
   background-color: #293462;
-  border-radius: 3px;
+  border-radius: 30px;
 }
 
 /* ----------------FOOTER---------------------- */
