@@ -6,7 +6,7 @@ h1, .indie {
   color: white;
 }
 
-p, h3, h4, h5, label, .oswald {
+p, h3, h4, h5, label, .oswald, .nav-font {
   font-family: 'Oswald', sans-serif;
   color: white;
 }
@@ -30,18 +30,51 @@ a:hover {
   border-radius: 6px;
   color: black;
   height: 100%;
-  margin: 12px 0;
+  margin-top: 12px;
 }
 
-.container-fluid {
+.main-container {
   background-color: #293462;
   border-radius: 30px;
+  margin-bottom: 15%;
 }
 
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* --------------------NAVBAR------------------- */
+
+.navbar, .dropdown-menu {
+  background-color: #EC9B3B;
+}
+
+.navbar {
+  margin-bottom: 7%;
+}
+
+.nav-font {
+  color: black;
+}
+
+ .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.nav-link:focus, .nav-link:hover, .dropdown-item:focus, .dropdown-item:hover {
+    color: #F7D716;
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+    background-color: #EC9B3B;
+}
 /* ----------------FOOTER---------------------- */
 .footer {
   background-color: #F7D716;
   width: 100%;
+  position: fixed;
+  bottom: 0;
 }
 
 .footer-font {
@@ -63,6 +96,17 @@ a:hover {
 
 .footer-link:hover {
   color: #293462;
+}
+
+.btn-warning {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #EC9B3B;
+  border-color: #EC9B3B;
+}
+
+.home-btn {
+  width: 50%
 }
 
 .skills-btn {

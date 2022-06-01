@@ -69,7 +69,7 @@ app.route("/register")
       res.redirect("/register");
     } else {
       passport.authenticate("local")(req, res, function(){
-        // res.redirect("/secrets");
+        res.redirect("/");
       })
     }
   })
@@ -91,7 +91,7 @@ app.route("/login")
       console.log(err);
     } else {
       passport.authenticate("local")(req, res, function(){
-        // res.redirect("/secrets");
+        res.redirect("/");
       })
     }
   })
