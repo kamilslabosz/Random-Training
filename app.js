@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require("express");
+const flash = require('express-flash');
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const _ = require("lodash");
@@ -24,6 +25,8 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
 }));
+
+app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -70,7 +73,8 @@ app.route("/register")
     }, req.body.password, function(err, user) {
       if (err) {
         console.log(err);
-        res.redirect("/register");
+        req.flash("info", "User already registered")
+        res.redirect("/login");
       } else {
         passport.authenticate("local")(req, res, function() {
           res.redirect("/");
@@ -92,7 +96,8 @@ app.route("/login")
     });
     req.login(user, function(err) {
       if (err) {
-        console.log(err);
+        req.flash("info", "Incorrect password")
+        res.redirect("/login")
       } else {
         passport.authenticate("local")(req, res, function() {
           res.redirect("/dashboard");
@@ -127,24 +132,27 @@ app.route("/add-video/:userId")
 
   .post(function(req, res) {
     if (req.user) {
-      res.render("dashboard", {
-        user: req.user
-      })
-
       const userID = req.params.userId;
       const videoUrl = req.body.video;
       const regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
       let newVideoId = videoUrl.match(regExp);
       if (newVideoId && newVideoId[2].length == 11) {
-        User.findById(userID, function(err, user) {
-          if (!err) {
-            user.videos.push(newVideoId[2]);
-            user.save();
-            res.redirect("/dashboard")
-          }
+        if (req.user.videos.includes(newVideoId[2])){
+          req.flash("info", "Video already in collection");
+          res.redirect("/dashboard")
+        } else {
+          User.findById(userID, function(err, user) {
+            if (!err) {
+              user.videos.push(newVideoId[2]);
+              user.save();
+              req.flash("info", "Video added to collection");
+              res.redirect("/dashboard")
+            }
         })
+      }
       } else {
-        console.log("Error");
+        req.flash("info", "Something went wrong");
+        res.redirect("/dashboard")
       }
     } else {
       res.redirect("/login")
@@ -175,12 +183,14 @@ app.post('/change-password/:userId', function(req, res){
         user.setPassword(password1, function(err, user){
           if (!err){
             user.save();
+            req.flash("info", "Password changed")
             res.redirect("/dashboard")
           }
         })
       }
   })
-}
+} else
+  req.flash("info", "Passwords don't match")
   res.redirect("/dashboard")
 });
 

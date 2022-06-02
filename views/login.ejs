@@ -3,6 +3,9 @@
 <div class="col-8">
   <div class="container-fluid main-container text-center">
     <h1>Log In</h1>
+    <% if(messages.info) { %>
+      <h2 class="flash"><%= messages.info %></h2>
+    <% } %>
     <form action="/login" method="POST">
       <div class="form-group">
         <label for="email">Email</label>
@@ -12,7 +15,7 @@
         <label for="password">Password</label>
         <input type="password" class="form-control" name="password">
       </div>
-      <button type="submit" class="btn btn-dark">Login</button>
+      <button type="submit" class="btn home-btn btn-warning">Login</button>
     </form>
   </div>
 </div>

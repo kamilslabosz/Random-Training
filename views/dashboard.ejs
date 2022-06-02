@@ -3,6 +3,9 @@
 <div class="col-8">
   <div class="container-fluid main-container text-center">
     <h1>Dashboard</h1>
+    <% if(messages.info) { %>
+      <h2 class="flash"><%= messages.info %></h2>
+    <% } %>
     <a href="/random-video"><button type="button" class="btn home-btn btn-warning">Get Random Video</button></a>
 
     <form action="/add-video/<%=user.id%>" method="POST">
@@ -10,14 +13,14 @@
         <label for=video">Add Video</label>
         <input type="text" class="form-control" name="video" placeholder="Video URL">
       </div>
-      <button type="submit" class="btn btn-dark">Add</button>
+      <button type="submit" class="btn home-btn btn-warning">Add</button>
       </form>
       <!-- <form action="/add-playlist/<%=user.id%>" method="POST">
       <div class="form-group">
         <label for="playlist">Add Playlist</label>
         <input type="text" class="form-control" name="playlist" placeholder="Playlist URL">
       </div>
-      <button type="submit" class="btn btn-dark">Add</button>
+      <button type="submit" class="btn home-btn btn-warning">Add</button>
     </form> -->
     <form action="/change-password/<%=user.id%>" method="POST">
     <div class="form-group">
@@ -28,7 +31,7 @@
       <label for="password2">Confirm New Password</label>
       <input type="password" class="form-control" name="password2">
     </div>
-    <button type="submit" class="btn btn-dark">Change password</button>
+    <button type="submit" class="btn home-btn btn-warning">Change password</button>
   </form>
   </div>
 </div>
