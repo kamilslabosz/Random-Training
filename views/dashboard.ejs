@@ -1,0 +1,36 @@
+<%- include('partials/header') %>
+
+<div class="col-8">
+  <div class="container-fluid main-container text-center">
+    <h1>Dashboard</h1>
+    <a href="/random-video"><button type="button" class="btn home-btn btn-warning">Get Random Video</button></a>
+
+    <form action="/add-video/<%=user.id%>" method="POST">
+      <div class="form-group">
+        <label for=video">Add Video</label>
+        <input type="text" class="form-control" name="video" placeholder="Video URL">
+      </div>
+      <button type="submit" class="btn btn-dark">Add</button>
+      </form>
+      <!-- <form action="/add-playlist/<%=user.id%>" method="POST">
+      <div class="form-group">
+        <label for="playlist">Add Playlist</label>
+        <input type="text" class="form-control" name="playlist" placeholder="Playlist URL">
+      </div>
+      <button type="submit" class="btn btn-dark">Add</button>
+    </form> -->
+    <form action="/change-password/<%=user.id%>" method="POST">
+    <div class="form-group">
+      <label for="password1">New Password</label>
+      <input type="password" class="form-control" name="password1">
+    </div>
+    <div class="form-group">
+      <label for="password2">Confirm New Password</label>
+      <input type="password" class="form-control" name="password2">
+    </div>
+    <button type="submit" class="btn btn-dark">Change password</button>
+  </form>
+  </div>
+</div>
+
+<%- include('partials/footer') %>
