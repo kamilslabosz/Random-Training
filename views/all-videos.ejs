@@ -1,0 +1,23 @@
+<%- include("partials/header"); -%>
+
+
+  <div class="col-8">
+    <div class="container-fluid main-container text-center">
+      <% if(messages.info) { %>
+        <h2 class="flash"><%= messages.info %></h2>
+      <% } %>
+      <div class="row">
+      <% videos.forEach(function(video) { %>
+        <div class="col-lg-3 col-md-4 col-sm-12">
+          <a href="https://www.youtube.com/watch?v=<%=video%>"><img src="https://img.youtube.com/vi/<%=video%>/default.jpg"  /></a>
+          <p>ID: <%=video%> <a href="delete/<%=video%>">X</a></p>
+        </div>
+      <% }) %>
+      </div>
+
+    </div>
+  </div>
+
+
+
+<%- include("partials/footer"); -%>

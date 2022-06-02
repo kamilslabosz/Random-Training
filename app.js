@@ -56,14 +56,18 @@ passport.deserializeUser(function(id, done) {
 app.route("/")
 
   .get(function(req, res) {
-    res.render("home", {user: req.user});
+    res.render("home", {
+      user: req.user
+    });
   });
 
 // LOGIN AND REGISTER MANAGEMENT //////////////////////////////////////
 
 app.route("/register")
   .get(function(req, res) {
-    res.render("register", {user: req.user});
+    res.render("register", {
+      user: req.user
+    });
   })
 
   .post(function(req, res) {
@@ -86,7 +90,9 @@ app.route("/register")
 
 app.route("/login")
   .get(function(req, res) {
-    res.render("login", {user: req.user});
+    res.render("login", {
+      user: req.user
+    });
   })
 
   .post(function(req, res) {
@@ -128,16 +134,16 @@ app.route("/dashboard")
     }
   })
 
-app.route("/add-video/:userId")
+app.route("/add-video")
 
   .post(function(req, res) {
     if (req.user) {
-      const userID = req.params.userId;
+      const userID = req.user._id;
       const videoUrl = req.body.video;
       const regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
       let newVideoId = videoUrl.match(regExp);
       if (newVideoId && newVideoId[2].length == 11) {
-        if (req.user.videos.includes(newVideoId[2])){
+        if (req.user.videos.includes(newVideoId[2])) {
           req.flash("info", "Video already in collection");
           res.redirect("/dashboard")
         } else {
@@ -148,8 +154,8 @@ app.route("/add-video/:userId")
               req.flash("info", "Video added to collection");
               res.redirect("/dashboard")
             }
-        })
-      }
+          })
+        }
       } else {
         req.flash("info", "Something went wrong");
         res.redirect("/dashboard")
@@ -163,35 +169,88 @@ app.route("/add-video/:userId")
 app.get("/random-video", function(req, res) {
   if (req.user) {
     const userVideos = req.user.videos
-    const video = userVideos[Math.floor(Math.random() * userVideos.length)];
-    res.render("get-video", {
-      videoId: video,
-      user: req.user
-    })
+    if (userVideos.length === 0) {
+      req.flash("info", "Collection is empty")
+      res.redirect("/dashboard")
+    } else {
+      const video = userVideos[Math.floor(Math.random() * userVideos.length)];
+      res.render("get-video", {
+        videoId: video,
+        user: req.user
+      })
+    }
   } else {
     res.redirect("/login")
   }
 });
 
-app.post('/change-password/:userId', function(req, res){
+app.post('/change-password', function(req, res) {
   const password1 = req.body.password1;
   const password2 = req.body.password2;
-  const userID = req.params.userId;
-  if (password1 === password2){
+  const userID = req.user._id;
+  if (password1 === password2) {
     User.findById(userID, function(err, user) {
       if (!err) {
-        user.setPassword(password1, function(err, user){
-          if (!err){
+        user.setPassword(password1, function(err, user) {
+          if (!err) {
             user.save();
             req.flash("info", "Password changed")
             res.redirect("/dashboard")
           }
         })
       }
-  })
-} else
-  req.flash("info", "Passwords don't match")
+    })
+  } else
+    req.flash("info", "Passwords don't match")
   res.redirect("/dashboard")
+});
+
+
+app.route("/all-videos")
+
+  .get(function(req, res) {
+    if (req.user) {
+      const userID = req.user._id
+      User.findById(userID, function(err, user) {
+        if (!err) {
+          const allVideos = user.videos;
+          if (allVideos.length === 0) {
+            req.flash("info", "Collection is empty")
+            res.redirect("/dashboard")
+          } else {
+            res.render("all-videos", {
+              videos: allVideos,
+              user: req.user
+            })
+          }
+        }
+      })
+    } else {
+      res.redirect("/login");
+    }
+  })
+
+app.get("/delete/:videoId", function(req, res) {
+  if (!req.user) {
+    res.redirect("/login")
+  } else {
+    const userID = req.user._id;
+    User.findById(userID, function(err, user) {
+      if (!err) {
+        const prevVideos = user.videos;
+        if (prevVideos.length === 0){
+          res.redirect("/dashboard")
+        } else {
+        user.videos = prevVideos.filter((id) => {
+          return id !== req.params.videoId;
+        })
+        user.save();
+        req.flash("info", "Video " + req.params.videoId + " deleted")
+        res.redirect('/all-videos')
+      }
+      }
+    })
+  }
 });
 
 let port = process.env.PORT;

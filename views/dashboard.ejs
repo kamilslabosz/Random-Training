@@ -7,8 +7,9 @@
       <h2 class="flash"><%= messages.info %></h2>
     <% } %>
     <a href="/random-video"><button type="button" class="btn home-btn btn-warning">Get Random Video</button></a>
+    <a href="/all-videos"><button type="button" class="btn home-btn btn-warning">Show All Videos</button></a>
 
-    <form action="/add-video/<%=user.id%>" method="POST">
+    <form action="/add-video" method="POST">
       <div class="form-group">
         <label for=video">Add Video</label>
         <input type="text" class="form-control" name="video" placeholder="Video URL">
@@ -22,7 +23,7 @@
       </div>
       <button type="submit" class="btn home-btn btn-warning">Add</button>
     </form> -->
-    <form action="/change-password/<%=user.id%>" method="POST">
+    <form action="/change-password" method="POST">
     <div class="form-group">
       <label for="password1">New Password</label>
       <input type="password" class="form-control" name="password1">
