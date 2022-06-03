@@ -8,7 +8,9 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require('passport');
 const passportLocalMongoose = require("passport-local-mongoose");
+const fetch = require("node-fetch");
 
+const apiKey = process.env.GOOGLE_YT_API_KEY;
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -136,6 +138,10 @@ app.route("/dashboard")
 
 app.route("/add-video")
 
+  .get(function(req, res) {
+    res.redirect("/dashboard")
+  })
+
   .post(function(req, res) {
     if (req.user) {
       const userID = req.user._id;
@@ -165,6 +171,34 @@ app.route("/add-video")
     }
 
   });
+
+  app.route("/add-playlist")
+
+    .get(function(req, res) {
+      res.redirect("/dashboard")
+    })
+
+    .post(function(req, res){
+      if (!req.user){
+        res.redirect("/login")
+      } else {
+        const userID = req.user._id;
+        const playlistUrl = req.body.playlist;
+        const regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|playlist\?list=|\&list=)([^#\&\?]*).*/;
+        let newPlaylistId = playlistUrl.match(regExp);
+        fetch("https://youtube.googleapis.com/youtube/v3/playlistItems?part=contentDetails&maxResults=50&playlistId="+newPlaylistId[2]+"&key="+apiKey)
+          .then(response => response.json())
+          .then(data => {
+            data.items.map((item) => {
+              if (!req.user.videos.includes(item.contentDetails.videoId)) {
+                req.user.videos.push(item.contentDetails.videoId)
+              }
+            })
+            req.user.save();
+            req.flash("info", "Videos from playlist added to collection");
+            res.redirect("/dashboard")
+          })
+    }});
 
 app.get("/random-video", function(req, res) {
   if (req.user) {
