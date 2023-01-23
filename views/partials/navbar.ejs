@@ -1,6 +1,14 @@
 <nav class="navbar navbar-expand-md">
   <div class="container-fluid text-center nav-container">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -9,31 +17,44 @@
           <a class="nav-link nav-font" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link nav-font" href="https://kamilslabosz.github.io/portfolio/">About me</a>
+          <a class="nav-link nav-font" href="kslabosz.pl">About me</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link nav-font" href="https://tabletop-group.herokuapp.com/contact-me">Contact</a>
+          <a class="nav-link nav-font" href="/dashboard">Dashboard</a>
         </li>
-          <li class="nav-item">
-            <a class="nav-link nav-font" href="/dashboard">Dashboard</a>
-          </li>
-          <% if (user) { %>
-          <li class="nav-item">
-            <a class="nav-link nav-font" href="/logout">Log Out</a>
-          </li>
-          <% } %>
+        <% if (user) { %>
+        <li class="nav-item">
+          <a class="nav-link nav-font" href="/logout">Log Out</a>
+        </li>
+        <% } %>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle nav-font" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a
+            class="nav-link dropdown-toggle nav-font"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
             Other Apps
           </a>
           <ul class="dropdown-menu nav-color" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item nav-color nav-font"  href="https://tabletop-group.herokuapp.com/">Tabletop Group</a></li>
-            <li><a class="dropdown-item nav-color nav-font" href="https://tabletop-group.herokuapp.com/todo">Todo list</a></li>
+            <li>
+              <a
+                class="dropdown-item nav-color nav-font"
+                href="https://tabletop-group.herokuapp.com/"
+                >Tabletop Group</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item nav-color nav-font"
+                href="https://tabletop-group.herokuapp.com/todo"
+                >Todo list</a
+              >
+            </li>
           </ul>
-
         </li>
-
-
       </ul>
     </div>
   </div>

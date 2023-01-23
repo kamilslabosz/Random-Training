@@ -1,40 +1,56 @@
 /* https://colorhunt.co/palette/293462f24c4cec9b3bf7d716 */
 
+:root {
+  --primary: #ea8a8a;
+  --secondary: #ebd5d5;
+  --bg: #f2f2f2;
+  --flash: #c000ff;
+  --font: #685454;
+}
+
 /* ----------------GENERAL---------------------- */
-h1, .indie {
-  font-family: 'Indie Flower', cursive;
-  color: white;
+h1,
+.indie {
+  font-family: "Indie Flower", cursive;
+  color: var(--font);
 }
 
-p, h3, h4, h5, label, .oswald, .nav-font {
-  font-family: 'Oswald', sans-serif;
-  color: white;
+p,
+h3,
+h4,
+h5,
+label,
+.oswald,
+.nav-font {
+  font-family: "Oswald", sans-serif;
+  color: var(--font);
 }
 
-body, .carousel-inner {
-  background-color: #F24C4C;
+body,
+.carousel-inner {
+  background-color: var(--bg);
   background-image: url("../img/black-thread.png");
 }
 
 a {
-  color: #CE9461;
+  color: var(--font);
   text-decoration: none;
 }
 
 a:hover {
-  color: #E0D8B0;
+  color: var(--primary);
 }
 
 #main-body {
-  background-color: #293462;
+  background-color: var(--secondary);
   border-radius: 6px;
-  color: black;
+  color: var(--font);
   height: 100%;
   margin-top: 12px;
 }
 
 .main-container {
-  background-color: #293462;
+  background-color: var(--secondary);
   border-radius: 30px;
   margin-bottom: 15%;
   padding-top: 20px;
@@ -47,13 +63,14 @@ a:hover {
 }
 
 .flash {
-  color: #F7D716;
+  color: var(--flash);
 }
 
 /* --------------------NAVBAR------------------- */
 
-.navbar, .dropdown-menu {
-  background-color: #EC9B3B;
+.navbar,
+.dropdown-menu {
+  background-color: var(--primary);
 }
 
 .navbar {
@@ -61,23 +78,27 @@ a:hover {
 }
 
 .nav-font {
-  color: black;
+  color: var(--font);
 }
 
- .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
-.nav-link:focus, .nav-link:hover, .dropdown-item:focus, .dropdown-item:hover {
-    color: #F7D716;
+.nav-link:focus,
+.nav-link:hover,
+.dropdown-item:focus,
+.dropdown-item:hover {
+  color: var(--secondary);
 }
 
-.dropdown-item:focus, .dropdown-item:hover {
-    background-color: #EC9B3B;
+.dropdown-item:focus,
+.dropdown-item:hover {
+  background-color: var(--primary);
 }
 /* ----------------FOOTER---------------------- */
 .footer {
-  background-color: #F7D716;
+  background-color: var(--secondary);
   width: 100%;
   position: fixed;
   bottom: 0;
@@ -85,7 +106,7 @@ a:hover {
 
 .footer-font {
   margin-bottom: 0;
-  color: black;
+  color: var(--font);
 }
 
 .footer-icon {
@@ -94,31 +115,31 @@ a:hover {
 }
 
 .footer-link {
-  color: black;
+  color: var(--font);
   text-decoration: none;
   margin-left: 5px;
   margin-right: 5px;
 }
 
 .footer-link:hover {
-  color: #293462;
+  color: var(--primary);
 }
 
 .btn-warning {
   margin-top: 10px;
   margin-bottom: 10px;
-  background-color: #EC9B3B;
-  border-color: #EC9B3B;
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: var(--font);
+}
+
+.btn-warning:hover {
+  background-color: var(--secondary);
+  color: var(--font);
 }
 
 .home-btn {
-  width: 50%
-}
-
-.skills-btn {
-  background-color: #DEA057;
-  width: 100%;
-  border-radius: 0;
+  width: 50%;
 }
 
 .no-margin {
@@ -130,13 +151,6 @@ a:hover {
   margin-bottom: 5px;
 }
 
-.skills-box {
-  border-radius: 6px;
-  background-color: #E0D8B0;
-  padding-bottom: 12px;
-  margin-bottom: 12px;
-}
-
 .heading {
   font-size: 20px;
 }
@@ -145,3 +159,4 @@ a:hover {
   padding-top: 6px;
   margin-bottom: 12px;
   border-radius: 6px;
+}
