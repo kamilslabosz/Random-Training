@@ -131,10 +131,12 @@ a:hover {
   background-color: var(--primary);
   border-color: var(--primary);
   color: var(--font);
+  font-family: "Oswald", sans-serif;;
 }
 
 .btn-warning:hover {
   background-color: var(--secondary);
+  border-color: var(--primary);
   color: var(--font);
 }
 
